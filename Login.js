@@ -18,16 +18,19 @@ import {
 import Icon from "react-native-vector-icons/MaterialIcons";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 const Login = ({ navigation }) => {
+  const [UserName, setUserName] = useState("");
+  const [Password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState("");
   const handleLogin = () => {
     const userData = {
       UserName: UserName,
       Password: Password,
     };
-    console.log('Logging in with:', userData);
-    fetch('http://192.168.135.234:4000/login', {
-      method: 'POST',
+    console.log("Logging in with:", userData);
+    fetch("http://192.168.135.234:3000/login", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(userData),
     })
@@ -35,15 +38,15 @@ const Login = ({ navigation }) => {
       .then((data) => {
         if (data.user) {
           // Login successful, navigate to home
-          navigation.navigate('HomeTabs');
+          navigation.navigate('HomeTabs')
         } else {
           // Login failed, set error message
-          setLoginError('Invalid login credentials.');
+          setLoginError("Invalid login credentials.");
         }
       })
       .catch((error) => {
-        console.error('Login request error:', error);
-        setLoginError('An error occurred. Please try again.');
+        console.error("Login request error:", error);
+        setLoginError("An error occurred. Please try again.");
       });
   };
   return (
@@ -86,7 +89,7 @@ const Login = ({ navigation }) => {
             <Text style={styles.inputLabel}>Password</Text>
 
             <TextInput
-              autoCorrect={false}
+              
               onChangeText={setPassword}
               placeholder="********"
               placeholderTextColor="#6b7280"
@@ -98,7 +101,7 @@ const Login = ({ navigation }) => {
 
           <View style={styles.formAction}>
             <TouchableOpacity
-              onPress={() => {handleLogin} }>
+              onPress={handleLogin}>
               <View style={styles.btn}>
                 <Text style={styles.btnText}>Sign in</Text>
               </View>

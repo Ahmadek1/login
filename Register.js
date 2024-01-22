@@ -138,10 +138,8 @@ const Register = ({navigation}) => {
 
           <View style={styles.formAction}>
             <TouchableOpacity
-              onPress={() => {
-                // handle onPress
-                handleRegistration
-              }}>
+              onPress={handleRegistration
+              }>
               <View style={styles.btn}>
                 <Text style={styles.btnText}>Sign Up</Text>
               </View>
